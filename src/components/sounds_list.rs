@@ -17,7 +17,7 @@ pub fn sounds_list(
     }: &SoundsListProps,
 ) -> Html {
     let on_click = on_click.clone();
-    let disabled = is_locked.to_owned();
+    let disabled = *is_locked;
 
     sounds
         .iter()

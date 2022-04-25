@@ -9,16 +9,14 @@ use yew::prelude::*;
 pub fn app() -> Html {
     let sounds = use_sounds();
     let is_locked = use_lock();
-    let on_sound_click = {
-        Callback::from(move |sound: Sound| {
-            log::debug!("{:?}", sound);
-            spawn_local(async move {
-                if let Err(error) = play_sound(sound).await {
-                    log::error!("Failed to play sound {:?}", error);
-                }
-            });
-        })
-    };
+    let on_sound_click = Callback::from(move |sound: Sound| {
+        log::debug!("{:?}", sound);
+        spawn_local(async move {
+            if let Err(error) = play_sound(sound).await {
+                log::error!("Failed to play sound {:?}", error);
+            }
+        });
+    });
 
     let c_sounds = (*sounds).clone();
 
