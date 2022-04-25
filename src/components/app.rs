@@ -23,6 +23,10 @@ pub fn app() -> Html {
     let c_sounds = (*sounds).clone();
 
     html! {
-        <SoundsList sounds={c_sounds} on_click={on_sound_click} is_locked={*is_locked} />
+        <SoundsList
+            sounds={c_sounds}
+            on_click={on_sound_click}
+            is_locked={*is_locked}
+        />
     }
 }

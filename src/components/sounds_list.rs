@@ -29,7 +29,10 @@ pub fn sounds_list(
             };
 
             html! {
-                <button onclick={on_sound_select} disabled={disabled}>
+                <button
+                    onclick={on_sound_select}
+                    disabled={disabled}
+                >
                     {format!("{}: {}", sound.name, sound.tags.join(","))}
                 </button>
             }
