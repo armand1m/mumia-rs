@@ -1,5 +1,6 @@
 pub mod api;
 pub mod components;
+pub mod hooks;
 
 use components::app::App;
 
