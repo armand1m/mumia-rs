@@ -1,4 +1,6 @@
 use crate::api::sound::Sound;
+use crate::components::sound_button::SoundButton;
+use stylist::yew::styled_component;
 use yew::prelude::*;
 
 #[derive(Clone, Properties, PartialEq)]
@@ -8,7 +10,7 @@ pub struct SoundsListProps {
     pub is_locked: bool,
 }
 
-#[function_component(SoundsList)]
+#[styled_component(SoundsList)]
 pub fn sounds_list(
     SoundsListProps {
         sounds,
@@ -22,19 +24,12 @@ pub fn sounds_list(
     sounds
         .iter()
         .map(|sound| {
-            let on_sound_select = {
-                let on_click = on_click.clone();
-                let sound = sound.clone();
-                Callback::from(move |_| on_click.emit(sound.clone()))
-            };
-
             html! {
-                <button
-                    onclick={on_sound_select}
+                <SoundButton
+                    sound={sound.clone()}
+                    on_click={on_click.clone()}
                     disabled={disabled}
-                >
-                    {format!("{}: {}", sound.name, sound.tags.join(","))}
-                </button>
+                />
             }
         })
         .collect()
